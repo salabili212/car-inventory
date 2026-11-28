@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class DealershipFileManager {
     private String dealershipsFilePath = "src/main/resources/inventory.csv";
-    public void getDealership(){
-        Dealership dealership;
-        ArrayList<Vehicle> vehiclesList = new ArrayList<>();
+
+    public Dealership getDealership(){
+        Dealership dealership = null;
         Vehicle vehicle;
 
         try {
@@ -19,27 +19,12 @@ public class DealershipFileManager {
 
             }else{
                 bufferedReader.close();
-                return;
             }
+
+
 
             String vehiclesInfoString = bufferedReader.readLine();
-            if (vehiclesInfoString != null){
-                String[] vehiclesInfo =vehiclesInfoString.split("\\|");
-                        vehicle = new Vehicle(Integer.parseInt(vehiclesInfo[0]),Integer.
-                                parseInt(vehiclesInfo[1]),vehiclesInfo[2],vehiclesInfo[3],
-                                vehiclesInfo[4],vehiclesInfo[5],Integer.parseInt(vehiclesInfo[6]),
-                                new BigDecimal(vehiclesInfo[7]));
-
-                dealership.addVehicle(vehicle);
-            }else{
-                bufferedReader.close();
-                return;
-            }
-
-
-
-            while(vehiclesInfoString != null){
-                vehiclesInfoString = bufferedReader.readLine();
+            while( vehiclesInfoString != null){
                 if (vehiclesInfoString != null){
                     String[] vehiclesInfo =vehiclesInfoString.split("\\|");
                     vehicle = new Vehicle(Integer.parseInt(vehiclesInfo[0]),Integer.
@@ -52,16 +37,18 @@ public class DealershipFileManager {
                     bufferedReader.close();
                     break;
                 }
+                vehiclesInfoString = bufferedReader.readLine();
 
             }
+
         }catch (Exception e){
             System.out.println("Please check the dealershipsFilePath" + e);
         }
 
-
+        return dealership;
     }
 
-    public void saveDealership(){
+    public void saveDealership(Dealership dealership){
 
     }
 
