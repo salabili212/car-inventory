@@ -19,27 +19,26 @@ public class DealershipFileManager {
 
             }else{
                 bufferedReader.close();
+                return null;
             }
 
 
 
             String vehiclesInfoString = bufferedReader.readLine();
             while( vehiclesInfoString != null){
-                if (vehiclesInfoString != null){
-                    String[] vehiclesInfo =vehiclesInfoString.split("\\|");
-                    vehicle = new Vehicle(Integer.parseInt(vehiclesInfo[0]),Integer.
-                            parseInt(vehiclesInfo[1]),vehiclesInfo[2],vehiclesInfo[3],
-                            vehiclesInfo[4],vehiclesInfo[5],Integer.parseInt(vehiclesInfo[6]),
-                            new BigDecimal(vehiclesInfo[7]));
 
-                    dealership.addVehicle(vehicle);
-                }else{
-                    bufferedReader.close();
-                    break;
-                }
+                String[] vehiclesInfo =vehiclesInfoString.split("\\|");
+                vehicle = new Vehicle(Integer.parseInt(vehiclesInfo[0]),Integer.
+                        parseInt(vehiclesInfo[1]),vehiclesInfo[2],vehiclesInfo[3],
+                        vehiclesInfo[4],vehiclesInfo[5],Integer.parseInt(vehiclesInfo[6]),
+                        new BigDecimal(vehiclesInfo[7]));
+
+                dealership.addVehicle(vehicle);
+
                 vehiclesInfoString = bufferedReader.readLine();
 
             }
+            bufferedReader.close();
 
         }catch (Exception e){
             System.out.println("Please check the dealershipsFilePath" + e);

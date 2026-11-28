@@ -7,7 +7,7 @@ public class Dealership {
     private String name;
     private String address;
     private String phone;
-    ArrayList<Vehicle> vehicles;
+    private ArrayList<Vehicle> vehicles;
 
     public Dealership(String name, String address, String phone) {
         this.name = name;
