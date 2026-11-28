@@ -7,13 +7,13 @@ public class Dealership {
     private String name;
     private String address;
     private String phone;
-    ArrayList<Vehicle> vehicles = new ArrayList<>();
+    ArrayList<Vehicle> vehicles;
 
-    public Dealership(String name, String address, String phone, ArrayList<Vehicle> vehicles) {
+    public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.vehicles = vehicles;
+        this.vehicles = new ArrayList<>();
     }
 
     //return all the vehicles by price
@@ -31,7 +31,7 @@ public class Dealership {
     public ArrayList<Vehicle> getVehicleByMakeModel(String make, String model){
         ArrayList<Vehicle> vehiclesByMakeOrModel = new ArrayList<>();
         for (Vehicle v: vehicles){
-            if(v.getMake().equalsIgnoreCase(make) || v.getModel().equalsIgnoreCase(model)){
+            if(v.getMake().equalsIgnoreCase(make) && v.getModel().equalsIgnoreCase(model)){
                 vehiclesByMakeOrModel.add(v);
             }
         }
@@ -42,7 +42,7 @@ public class Dealership {
     public ArrayList<Vehicle> getVehicleByYear(int min, int max){
         ArrayList<Vehicle> vehiclesByYear = new ArrayList<>();
         for (Vehicle v: vehicles){
-            if(v.getYear() >= min || v.getYear() <= max){
+            if(v.getYear() >= min && v.getYear() <= max){
                 vehiclesByYear.add(v);
             }
         }
@@ -64,7 +64,7 @@ public class Dealership {
     public ArrayList<Vehicle> getVehicleByMileage(int min,int max){
         ArrayList<Vehicle> vehiclesByMileage = new ArrayList<>();
         for (Vehicle v: vehicles){
-            if(v.getOdometer() >= min || v.getOdometer() <= max){
+            if(v.getOdometer() >= min && v.getOdometer() <= max){
                 vehiclesByMileage.add(v);
             }
         }
@@ -94,12 +94,7 @@ public class Dealership {
     }
 
     public void removeVehicle(Vehicle v){
-        for (Vehicle v1: vehicles){
-            if (v1 == v){
-                vehicles.remove(v1);
-                System.out.println("Removed successfully..");
-            }
-        }
+        vehicles.remove(v);
     }
 
     public String getName() {
